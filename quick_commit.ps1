@@ -71,6 +71,37 @@ if (-not $originUrl) {
     Write-Host "🔧 Настраиваю origin -> $TARGET_GITHUB_REMOTE" -ForegroundColor Cyan
     git remote add origin $TARGET_GITHUB_REMOTE
 }
+
+function Test-TagExists {
+    param(
+        [string]$TagName
+    )
+    $exact = git tag --list $TagName
+    return -not [string]::IsNullOrWhiteSpace($exact)
+}
+
+function Get-NextAvailableVersion {
+    param(
+        [string]$Version
+    )
+
+    $parts = $Version -split '\.'
+    if ($parts.Count -ne 3) {
+        return $Version
+    }
+
+    $major = [int]$parts[0]
+    $minor = [int]$parts[1]
+    $patch = [int]$parts[2]
+    $candidate = "$major.$minor.$patch"
+
+    while (Test-TagExists -TagName "v$candidate") {
+        $patch++
+        $candidate = "$major.$minor.$patch"
+    }
+
+    return $candidate
+}
 elseif ($originUrl -notmatch 'github\.com[:/]Popovich52/wozym(\.git)?$') {
     Write-Host "🔧 Обновляю origin -> $TARGET_GITHUB_REMOTE" -ForegroundColor Cyan
     git remote set-url origin $TARGET_GITHUB_REMOTE
@@ -86,8 +117,8 @@ if ([string]::IsNullOrWhiteSpace($customComment)) {
     Write-Host "ℹ️  Используется стандартный комментарий: $customComment" -ForegroundColor Yellow
 }
 
-# Получаем последний тег из git
-$latestTag = git describe --tags --abbrev=0 2>$null
+# Получаем последний semver-тег из git
+$latestTag = git tag --list "v*" --sort=-version:refname | Select-Object -First 1
 if (-not $latestTag) {
     Write-Host "⚠️  Git теги не найдены. Устанавливаем начальную версию v1.0.0" -ForegroundColor Yellow
     $currentVersion = "1.0.0"
@@ -118,6 +149,12 @@ else {
     # Убираем префикс 'v' если пользователь его ввёл
     $newVersion = $userVersion -replace '^v', ''
     Write-Host "✅ Используется пользовательская версия: v$newVersion" -ForegroundColor Green
+}
+
+$availableVersion = Get-NextAvailableVersion -Version $newVersion
+if ($availableVersion -ne $newVersion) {
+    Write-Host "⚠️  Тег v$newVersion уже существует. Переключаюсь на v$availableVersion." -ForegroundColor Yellow
+    $newVersion = $availableVersion
 }
 
 # Сообщение коммита
