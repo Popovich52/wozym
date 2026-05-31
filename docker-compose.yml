@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres:16.4
+    restart: always
+    container_name: wozym-postgres
+    environment:
+      POSTGRES_PASSWORD: wozym
+      POSTGRES_USER: wozym
+      POSTGRES_DB: wozym
+    ports:
+      - "56432:5432"
+    volumes:
+      - wozym_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wozym -d wozym"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  mailpit:
+    image: axllent/mailpit:v1.22
+    restart: always
+    container_name: wozym-mailpit
+    ports:
+      - "11125:1025"
+      - "18125:8025"
+
+volumes:
+  wozym_pgdata:
+

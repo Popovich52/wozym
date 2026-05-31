@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+:root {
+  --mp-orange: #ff6a00;
+  --mp-orange-hover: #e85f00;
+  --mp-ink: #171717;
+  --mp-muted: #6b7280;
+  --mp-line: #e5e7eb;
+  --mp-surface: #ffffff;
+  --mp-background: #f8fafc;
+}
+
+@theme inline {
+  --color-background: var(--mp-background);
+  --color-foreground: var(--mp-ink);
+  --font-sans: var(--font-manrope);
+  --font-mono: var(--font-space-mono);
+}
+
+body {
+  background: radial-gradient(1000px 420px at 20% -5%, #ffd8b8 0, transparent 70%), var(--mp-background);
+  color: var(--mp-ink);
+  font-family: var(--font-manrope), sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+.mp-shell {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.mp-shell-wide {
+  max-width: none;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.mp-card {
+  background: var(--mp-surface);
+  border: 1px solid var(--mp-line);
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.mp-input {
+  width: 100%;
+  border: 1px solid var(--mp-line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+}
+
+.mp-input:focus {
+  border-color: var(--mp-orange);
+  box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.2);
+}
+
+.mp-btn-primary {
+  background: var(--mp-orange);
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 700;
+  border: 1px solid var(--mp-orange);
+  cursor: pointer;
+}
+
+.mp-btn-primary:hover {
+  background: var(--mp-orange-hover);
+}
+
+.mp-btn-secondary {
+  background: #fff;
+  color: var(--mp-ink);
+  border: 1px solid var(--mp-line);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mp-btn-primary:disabled,
+.mp-btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.mp-error {
+  color: #dc2626;
+  font-size: 12px;
+}

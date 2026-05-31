@@ -1,0 +1,22 @@
+{
+  "name": "wozym",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "shared"
+  ],
+  "scripts": {
+    "frontend:dev": "npm --prefix frontend run dev",
+    "frontend:lint": "npm --prefix frontend run lint",
+    "frontend:typecheck": "npm --prefix frontend run typecheck",
+    "frontend:test": "npm --prefix frontend run test",
+    "graphify": "node scripts/graphify.mjs",
+    "graphify:refresh": "npm run graphify",
+    "graphify:watch": "chokidar \"frontend/src/**/*.{ts,tsx,js,jsx}\" \"shared/src/**/*.{ts,tsx,js,jsx}\" \"backend/app/**/*.py\" -c \"npm run graphify\" --initial"
+  },
+  "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "madge": "^8.0.0"
+  }
+}
+

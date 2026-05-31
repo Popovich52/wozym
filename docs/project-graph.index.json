@@ -1,0 +1,352 @@
+{
+  "generatedAt": "2026-05-31T10:43:10.938Z",
+  "counts": {
+    "nodes": 59,
+    "edges": 70,
+    "frontendNodes": 37,
+    "backendNodes": 22
+  },
+  "nodes": [
+    "be:ai_logging",
+    "be:ai_product_cards",
+    "be:app",
+    "be:core.config",
+    "be:core.database",
+    "be:core.permissions",
+    "be:core.platform_policy",
+    "be:core.policy",
+    "be:core.security",
+    "be:deps",
+    "be:main",
+    "be:marketplace_sync",
+    "be:models",
+    "be:routes",
+    "be:routes.agent",
+    "be:routes.auth",
+    "be:routes.me",
+    "be:routes.messengers",
+    "be:routes.platform",
+    "be:routes.teams",
+    "be:schemas",
+    "be:services",
+    "fe:app/account/page.tsx",
+    "fe:app/account/password/page.tsx",
+    "fe:app/dashboard/page.tsx",
+    "fe:app/globals.css",
+    "fe:app/layout.tsx",
+    "fe:app/login/page.tsx",
+    "fe:app/page.tsx",
+    "fe:app/platform/ai-logs/page.tsx",
+    "fe:app/platform/audit/page.tsx",
+    "fe:app/platform/layout.tsx",
+    "fe:app/platform/page.tsx",
+    "fe:app/platform/recommendations/page.tsx",
+    "fe:app/platform/support/page.tsx",
+    "fe:app/platform/teams/page.tsx",
+    "fe:app/platform/users/page.tsx",
+    "fe:app/profile/page.tsx",
+    "fe:app/providers.tsx",
+    "fe:app/register/page.tsx",
+    "fe:app/teams/[teamId]/agent/page.tsx",
+    "fe:app/teams/[teamId]/connections/[connectionId]/access/page.tsx",
+    "fe:app/teams/[teamId]/connections/page.tsx",
+    "fe:app/teams/[teamId]/members/page.tsx",
+    "fe:app/teams/page.tsx",
+    "fe:app/verify-email/page.tsx",
+    "fe:app/verify-phone/page.tsx",
+    "fe:components/analytics-main-chart.tsx",
+    "fe:components/auth-shell.tsx",
+    "fe:components/code-ref-overlay.tsx",
+    "fe:lib/api.ts",
+    "fe:lib/auth-store.test.ts",
+    "fe:lib/auth-store.tsx",
+    "fe:lib/platform-auth.ts",
+    "fe:lib/validation.test.ts",
+    "fe:lib/validation.ts",
+    "shared:src/auth-contracts.ts",
+    "shared:src/index.ts",
+    "shared:src/user-contracts.ts"
+  ],
+  "edges": [
+    {
+      "from": "fe:app/layout.tsx",
+      "to": "fe:app/globals.css"
+    },
+    {
+      "from": "shared:src/index.ts",
+      "to": "shared:src/auth-contracts.ts"
+    },
+    {
+      "from": "shared:src/index.ts",
+      "to": "shared:src/user-contracts.ts"
+    },
+    {
+      "from": "be:ai_logging",
+      "to": "be:core.config"
+    },
+    {
+      "from": "be:ai_logging",
+      "to": "be:models"
+    },
+    {
+      "from": "be:ai_product_cards",
+      "to": "be:ai_logging"
+    },
+    {
+      "from": "be:ai_product_cards",
+      "to": "be:core.config"
+    },
+    {
+      "from": "be:ai_product_cards",
+      "to": "be:core.database"
+    },
+    {
+      "from": "be:ai_product_cards",
+      "to": "be:models"
+    },
+    {
+      "from": "be:core.database",
+      "to": "be:core.config"
+    },
+    {
+      "from": "be:core.platform_policy",
+      "to": "be:core.permissions"
+    },
+    {
+      "from": "be:core.platform_policy",
+      "to": "be:models"
+    },
+    {
+      "from": "be:core.policy",
+      "to": "be:core.permissions"
+    },
+    {
+      "from": "be:core.policy",
+      "to": "be:models"
+    },
+    {
+      "from": "be:core.security",
+      "to": "be:core.config"
+    },
+    {
+      "from": "be:deps",
+      "to": "be:core.database"
+    },
+    {
+      "from": "be:deps",
+      "to": "be:core.permissions"
+    },
+    {
+      "from": "be:deps",
+      "to": "be:core.security"
+    },
+    {
+      "from": "be:deps",
+      "to": "be:core.platform_policy"
+    },
+    {
+      "from": "be:deps",
+      "to": "be:core.policy"
+    },
+    {
+      "from": "be:deps",
+      "to": "be:models"
+    },
+    {
+      "from": "be:main",
+      "to": "be:core.config"
+    },
+    {
+      "from": "be:main",
+      "to": "be:core.database"
+    },
+    {
+      "from": "be:main",
+      "to": "be:routes.agent"
+    },
+    {
+      "from": "be:main",
+      "to": "be:routes.auth"
+    },
+    {
+      "from": "be:main",
+      "to": "be:routes.messengers"
+    },
+    {
+      "from": "be:main",
+      "to": "be:routes.me"
+    },
+    {
+      "from": "be:main",
+      "to": "be:routes.platform"
+    },
+    {
+      "from": "be:main",
+      "to": "be:routes.teams"
+    },
+    {
+      "from": "be:marketplace_sync",
+      "to": "be:models"
+    },
+    {
+      "from": "be:models",
+      "to": "be:core.database"
+    },
+    {
+      "from": "be:routes.agent",
+      "to": "be:core.policy"
+    },
+    {
+      "from": "be:routes.agent",
+      "to": "be:core.database"
+    },
+    {
+      "from": "be:routes.agent",
+      "to": "be:core.permissions"
+    },
+    {
+      "from": "be:routes.agent",
+      "to": "be:deps"
+    },
+    {
+      "from": "be:routes.agent",
+      "to": "be:models"
+    },
+    {
+      "from": "be:routes.agent",
+      "to": "be:schemas"
+    },
+    {
+      "from": "be:routes.agent",
+      "to": "be:services"
+    },
+    {
+      "from": "be:routes.auth",
+      "to": "be:core.config"
+    },
+    {
+      "from": "be:routes.auth",
+      "to": "be:core.database"
+    },
+    {
+      "from": "be:routes.auth",
+      "to": "be:core.security"
+    },
+    {
+      "from": "be:routes.auth",
+      "to": "be:deps"
+    },
+    {
+      "from": "be:routes.auth",
+      "to": "be:models"
+    },
+    {
+      "from": "be:routes.auth",
+      "to": "be:schemas"
+    },
+    {
+      "from": "be:routes.auth",
+      "to": "be:services"
+    },
+    {
+      "from": "be:routes.me",
+      "to": "be:core.database"
+    },
+    {
+      "from": "be:routes.me",
+      "to": "be:core.security"
+    },
+    {
+      "from": "be:routes.me",
+      "to": "be:deps"
+    },
+    {
+      "from": "be:routes.me",
+      "to": "be:models"
+    },
+    {
+      "from": "be:routes.me",
+      "to": "be:schemas"
+    },
+    {
+      "from": "be:routes.me",
+      "to": "be:services"
+    },
+    {
+      "from": "be:routes.messengers",
+      "to": "be:schemas"
+    },
+    {
+      "from": "be:routes.platform",
+      "to": "be:core.database"
+    },
+    {
+      "from": "be:routes.platform",
+      "to": "be:core.permissions"
+    },
+    {
+      "from": "be:routes.platform",
+      "to": "be:deps"
+    },
+    {
+      "from": "be:routes.platform",
+      "to": "be:models"
+    },
+    {
+      "from": "be:routes.platform",
+      "to": "be:schemas"
+    },
+    {
+      "from": "be:routes.teams",
+      "to": "be:core.database"
+    },
+    {
+      "from": "be:routes.teams",
+      "to": "be:core.permissions"
+    },
+    {
+      "from": "be:routes.teams",
+      "to": "be:core.security"
+    },
+    {
+      "from": "be:routes.teams",
+      "to": "be:core.config"
+    },
+    {
+      "from": "be:routes.teams",
+      "to": "be:deps"
+    },
+    {
+      "from": "be:routes.teams",
+      "to": "be:ai_product_cards"
+    },
+    {
+      "from": "be:routes.teams",
+      "to": "be:marketplace_sync"
+    },
+    {
+      "from": "be:routes.teams",
+      "to": "be:models"
+    },
+    {
+      "from": "be:routes.teams",
+      "to": "be:schemas"
+    },
+    {
+      "from": "be:routes.teams",
+      "to": "be:services"
+    },
+    {
+      "from": "be:services",
+      "to": "be:core.config"
+    },
+    {
+      "from": "be:services",
+      "to": "be:core.database"
+    },
+    {
+      "from": "be:services",
+      "to": "be:models"
+    }
+  ]
+}
