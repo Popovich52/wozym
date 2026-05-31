@@ -8,9 +8,12 @@ param(
 $TARGET_GITHUB_REPO = "Popovich52/wozym"
 $TARGET_GITHUB_REMOTE = "https://github.com/$TARGET_GITHUB_REPO.git"
 
-# GitHub token берем только из переменной окружения, чтобы не хранить секрет в git.
-# PowerShell (текущая сессия): $env:GITHUB_TOKEN = "your_token_here"
-$GITHUB_TOKEN = $env:GITHUB_TOKEN
+# Никогда не коммитьте сюда реальный PAT: GitHub Push Protection заблокирует push.
+# Если оставлен placeholder, будет использована переменная окружения GITHUB_TOKEN.
+$GITHUB_TOKEN = "YOUR_GITHUB_TOKEN_HERE"
+if ($GITHUB_TOKEN -eq "YOUR_GITHUB_TOKEN_HERE" -or [string]::IsNullOrWhiteSpace($GITHUB_TOKEN)) {
+    $GITHUB_TOKEN = $env:GITHUB_TOKEN
+}
 
 # Функция для работы с GitHub API
 function Get-GitHubData {
@@ -21,7 +24,7 @@ function Get-GitHubData {
     
     if ([string]::IsNullOrWhiteSpace($Token)) {
         Write-Host "⚠️  GitHub токен не настроен!" -ForegroundColor Yellow
-        Write-Host "   Установите переменную окружения GITHUB_TOKEN" -ForegroundColor Gray
+        Write-Host "   Укажите \$GITHUB_TOKEN в начале скрипта или установите переменную окружения GITHUB_TOKEN" -ForegroundColor Gray
         return @{ releases = $null; tags = $null }
     }
     
@@ -102,7 +105,7 @@ function Get-NextAvailableVersion {
 
     return $candidate
 }
-elseif ($originUrl -notmatch 'github\.com[:/]Popovich52/wozym(\.git)?$') {
+if ($originUrl -and $originUrl -notmatch 'github\.com[:/]Popovich52/wozym(\.git)?$') {
     Write-Host "🔧 Обновляю origin -> $TARGET_GITHUB_REMOTE" -ForegroundColor Cyan
     git remote set-url origin $TARGET_GITHUB_REMOTE
 }
