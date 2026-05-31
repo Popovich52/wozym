@@ -24,3 +24,7 @@ frontend/.dev*.log
 
 dist/
 build/
+
+# local release helper and secrets
+quick_commit.ps1
+.quick_commit.secrets.ps1
