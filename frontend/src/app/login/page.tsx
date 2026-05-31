@@ -1,6 +1,6 @@
 "use client";
 
-import { type FormEvent, useMemo, useState } from "react";
+import { Suspense, type FormEvent, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -9,7 +9,7 @@ import { login, platformMe } from "@/lib/api";
 import { useAuth } from "@/lib/auth-store";
 import { loginSchema } from "@/lib/validation";
 
-export default function LoginPage() {
+function LoginPageContent() {
   const [loginValue, setLoginValue] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -76,5 +76,13 @@ export default function LoginPage() {
         </Link>
       </p>
     </AuthShell>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<main className="mp-shell min-h-screen flex items-center justify-center"><section className="mp-card p-6 text-sm">Loading...</section></main>}>
+      <LoginPageContent />
+    </Suspense>
   );
 }

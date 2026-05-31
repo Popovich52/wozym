@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 import { AuthShell } from "@/components/auth-shell";
 import { verifyEmail } from "@/lib/api";
 
-export default function VerifyEmailPage() {
+function VerifyEmailPageContent() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
   const [status, setStatus] = useState<"idle" | "ok" | "error">(token ? "idle" : "error");
@@ -35,5 +35,13 @@ export default function VerifyEmailPage() {
         </Link>
       </div>
     </AuthShell>
+  );
+}
+
+export default function VerifyEmailPage() {
+  return (
+    <Suspense fallback={<main className="mp-shell min-h-screen flex items-center justify-center"><section className="mp-card p-6 text-sm">Loading...</section></main>}>
+      <VerifyEmailPageContent />
+    </Suspense>
   );
 }

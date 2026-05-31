@@ -1,6 +1,6 @@
 "use client";
 
-import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Check, Crown, ImageIcon, Rocket, ShieldCheck, Sparkles, UsersRound, Video, X } from "lucide-react";
@@ -65,7 +65,7 @@ const subscriptionPlans = [
   },
 ] as const;
 
-export default function ProfilePage() {
+function ProfilePageContent() {
   const { token, user, isReady, clearAuth, refreshUser } = useAuth();
   const nameRef = useRef<HTMLInputElement>(null);
   const [sessions, setSessions] = useState<SessionItem[]>([]);
@@ -443,6 +443,14 @@ export default function ProfilePage() {
         </section>
       ) : null}
     </main>
+  );
+}
+
+export default function ProfilePage() {
+  return (
+    <Suspense fallback={<main className="mp-shell min-h-screen flex items-center justify-center"><section className="mp-card p-6 text-sm">Loading...</section></main>}>
+      <ProfilePageContent />
+    </Suspense>
   );
 }
 
